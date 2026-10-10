@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+review/
+screenshots/
+exports/
+logs/
+*.log
+gloss-leesnotities.md
+gloss-reading-notes.md
+graphify-out/

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="nl" data-theme="paper">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f0">
+  <title>Gloss — lees met aandacht</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="i18n.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="progress-line" id="progress"></div>
+  <header class="topbar">
+    <button class="brand" id="home-button" aria-label="Gloss startpagina"><span class="brand-symbol">❧</span> gloss<span class="brand-dot">.</span></button>
+    <div class="topbar-divider"></div><span class="brand-caption">lees met aandacht</span>
+    <nav aria-label="Leesopties">
+      <div class="language-switch" role="group" aria-label="Taal"><button data-language="nl" aria-label="Nederlands" aria-pressed="true">NL</button><button data-language="en" aria-label="English" aria-pressed="false">EN</button></div>
+      <button id="library-button" class="icon-button" title="Bibliotheek" aria-label="Bibliotheek"><svg viewBox="0 0 24 24"><path d="M4 5h6v15H4zM14 4l5-1 3 15-5 1z"/></svg></button>
+      <button id="appearance-button" class="text-button" title="Vormgeving" aria-expanded="false">Aa</button>
+      <button id="speech-button" class="icon-button" title="Voorlezen" aria-label="Voorlezen"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM17 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"/></svg></button>
+      <button id="notebook-button" class="notebook-button" aria-label="Notitieboek" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M6 3h13v18H6zM3 7h6M3 12h6M3 17h6"/></svg><span>Notitieboek</span><span id="note-count" class="count">0</span></button>
+      <button id="settings-button" class="icon-button" title="AI-instellingen" aria-label="AI-instellingen"><svg viewBox="0 0 24 24"><path d="m12 3 2 3 4 .4.4 4 3 2-3 2-.4 4-4 .4-2 3-2-3-4-.4-.4-4-3-2 3-2 .4-4 4-.4z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </nav>
+  </header>
+
+  <main id="reader-view" class="reader-view">
+    <aside id="outline" class="outline" aria-label="Inhoudsopgave"></aside>
+    <div class="reading-layout" id="reading-layout">
+      <article id="article" class="article">
+        <div class="article-eyebrow"><span class="little-dot"></span><span id="article-source">Voorbeeldartikel</span><span class="eyebrow-divider">/</span><span id="reading-time">5 min leestijd</span></div>
+        <h1 id="article-title"></h1>
+        <p id="article-subtitle" class="article-subtitle"></p>
+        <div class="article-meta"><span id="article-author"></span><button id="original-link" class="original-link" hidden>Origineel <span>↗</span></button></div>
+        <div class="summary-box">
+          <button id="summary-toggle" class="summary-toggle" aria-expanded="false"><span><span class="spark">✧</span> In een oogopslag <span class="summary-label">de kern van het artikel</span></span><span id="summary-chevron">+</span></button>
+          <div id="summary-body" hidden></div>
+        </div>
+        <div id="article-body" class="article-body"></div>
+        <footer class="article-footer"><span>Je bent aan het einde.</span><span class="brand-symbol">❧</span><button id="new-article-bottom">Iets nieuws lezen <span>↗</span></button></footer>
+      </article>
+      <aside id="annotation-rail" class="annotation-rail" aria-label="Uitleg bij je selectie"></aside>
+    </div>
+    <div class="reading-dock"><span id="dock-position">01</span><span class="dock-divider"></span><span>Selecteer een zin om verder te denken</span><kbd>esc</kbd></div>
+  </main>
+
+  <main id="home-view" class="home-view" hidden>
+    <div class="home-eyebrow"><span class="little-dot"></span> RUIMTE VOOR EEN GOEDE GEDACHTE</div>
+    <h1>Markeer één zin.<br>Begrijp <em>het verhaal.</em></h1>
+    <p>Een rustige plek om te lezen, vragen te stellen<br>en vast te houden wat je raakt.</p>
+    <form id="url-form" class="url-form"><span>↗</span><input id="url-input" type="url" placeholder="Plak de link naar een artikel" aria-label="Link naar een artikel" required><button type="submit" id="import-button">Open artikel <span>→</span></button></form>
+    <div class="home-links"><button id="paste-button">Of plak je eigen tekst</button><span>·</span><button id="demo-button">Bekijk het voorbeeld ↗</button></div>
+    <div class="home-steps"><div><span>01</span><h2>Lees met rust</h2><p>Alleen de tekst. Precies zoals jij wilt.</p></div><div><span>02</span><h2>Volg je nieuwsgierigheid</h2><p>Selecteer een passage. Stel je vraag.</p></div><div><span>03</span><h2>Bewaar de gedachte</h2><p>Je markeringen en notities, bij elkaar.</p></div></div>
+    <div id="recent-articles" class="recent-articles"></div>
+  </main>
+
+  <div id="selection-toolbar" class="selection-toolbar" role="toolbar" aria-label="Acties voor geselecteerde tekst" hidden>
+    <button data-action="ask"><span>✧</span> Vraag</button><button data-action="explain">Leg uit</button><button data-action="define">Definieer</button><span class="toolbar-divider"></span><button data-action="highlight" class="highlight-action" title="Markeren" aria-label="Markeren"><span></span></button><button data-action="note" title="Notitie toevoegen" aria-label="Notitie toevoegen">＋</button>
+  </div>
+
+  <section id="appearance-panel" class="appearance-panel floating-panel" aria-label="Vormgeving" hidden>
+    <div class="panel-tabs"><button class="active">Vormgeving</button><span>Jouw leesruimte</span></div>
+    <span class="field-label">PAPIER</span>
+    <div class="theme-options"><button data-theme-choice="paper" class="theme-swatch paper" aria-label="Papier thema"><span>Aa</span><small>Papier</small></button><button data-theme-choice="white" class="theme-swatch white" aria-label="Wit thema"><span>Aa</span><small>Wit</small></button><button data-theme-choice="sepia" class="theme-swatch sepia" aria-label="Sepia thema"><span>Aa</span><small>Sepia</small></button><button data-theme-choice="dark" class="theme-swatch dark" aria-label="Donker thema"><span>Aa</span><small>Donker</small></button></div>
+    <span class="field-label">LETTERTYPE</span><div class="segmented"><button data-font="serif">Serif</button><button data-font="sans">Sans</button><button data-font="mono">Mono</button></div>
+    <label class="range-label" for="font-size">Tekstgrootte <span id="font-size-label">19 px</span></label><input type="range" id="font-size" min="16" max="26" value="19">
+    <label class="range-label" for="line-height">Regelafstand <span id="line-height-label">1.8</span></label><input type="range" id="line-height" min="14" max="22" value="18">
+    <span class="field-label">MARKEERKLEUR</span><div class="highlight-colors"><button data-color="yellow" aria-label="Geel" class="color-dot yellow"></button><button data-color="green" aria-label="Groen" class="color-dot green"></button><button data-color="blue" aria-label="Blauw" class="color-dot blue"></button><button data-color="pink" aria-label="Roze" class="color-dot pink"></button></div>
+    <button id="focus-button" class="focus-button">↗ Focusmodus <kbd>F</kbd></button>
+  </section>
+
+  <aside id="notebook-panel" class="notebook-panel" aria-label="Notitieboek" hidden>
+    <div class="notebook-heading"><div><h2>Notitieboek<span>.</span></h2><p>Wat je wilt vasthouden.</p></div><button id="close-notebook" class="icon-button" aria-label="Notitieboek sluiten">×</button></div>
+    <div class="notebook-tabs" role="tablist" aria-label="Notities filteren"><button data-filter="all" class="active" role="tab" aria-selected="true">Alles</button><button data-filter="highlight" role="tab" aria-selected="false">Markeringen</button><button data-filter="note" role="tab" aria-selected="false">Notities</button></div>
+    <div id="notebook-items" class="notebook-items"></div>
+    <button id="export-notes" class="export-button">↓ Exporteer als Markdown</button>
+    <div class="storage-caption">Bewaard in deze browser</div>
+  </aside>
+
+  <dialog id="paste-dialog"><form id="paste-form"><div class="dialog-heading"><h2>Jouw tekst, alle ruimte.</h2><button type="button" data-close-dialog aria-label="Sluiten">×</button></div><p class="dialog-description">Plak een artikel, essay of passage die je wilt lezen.</p><label>Titel<input id="paste-title" placeholder="Geef je tekst een titel" maxlength="160" required></label><label>Tekst<textarea id="paste-text" placeholder="Plak hier je tekst…" rows="10" required></textarea></label><button class="primary-button" type="submit">Begin met lezen →</button></form></dialog>
+  <dialog id="settings-dialog"><form id="settings-form"><div class="dialog-heading"><h2>Een assistent in de marge.</h2><button type="button" data-close-dialog aria-label="Sluiten">×</button></div><p class="dialog-description">Sluit een model aan voor eigen vragen. De gemarkeerde passage en het artikel worden bij een vraag naar jouw gekozen model gestuurd.</p><label>Aanbieder<select id="ai-provider"><option value="openai">OpenAI</option><option value="ollama">Ollama — lokaal op je computer</option></select></label><label id="key-field">API-sleutel<input id="api-key" type="password" autocomplete="off" placeholder="sk-…"></label><p id="key-hint" class="form-hint">Je sleutel blijft alleen in dit tabblad; we bewaren hem niet in je notitieboek.</p><label>Model<input id="ai-model" value="gpt-4.1-mini" required></label><p id="ai-settings-status" class="form-hint"></p><button type="submit" class="primary-button">Gebruik deze aansluiting →</button></form></dialog>
+  <dialog id="note-dialog"><form id="note-form"><div class="dialog-heading"><h2>Leg de gedachte vast.</h2><button type="button" data-close-dialog aria-label="Sluiten">×</button></div><blockquote id="note-quote"></blockquote><label>Je notitie<textarea id="note-text" rows="5" placeholder="Wat denk je hierbij?" required></textarea></label><button type="submit" class="primary-button">Bewaar notitie →</button></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
