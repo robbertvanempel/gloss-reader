@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn how Gloss Reader works in a two-minute English walkthrough, with narration, captions and a written guide.">
+  <title>Gloss Reader — English walkthrough</title>
+  <style>
+    :root{color-scheme:light;--paper:#f7f6f0;--ink:#272d24;--muted:#62695d;--line:#dcdfd4;--accent:#73845a}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:38px 28px 70px}header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px}.brand{font:34px Georgia,serif;letter-spacing:-2px;color:var(--ink);text-decoration:none}.brand span{color:var(--accent)}a{color:var(--ink);text-underline-offset:4px}header a:last-child{font-size:14px}.intro{max-width:760px;margin:42px 0 30px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;color:var(--muted)}h1{font:clamp(36px,5vw,62px)/1.12 Georgia,serif;letter-spacing:-1.5px;margin:12px 0 22px}h2{font:30px Georgia,serif;letter-spacing:-.5px;margin:34px 0 14px}.intro p:last-child{max-width:620px;color:var(--muted)}video{display:block;width:100%;background:#202620;border:1px solid var(--line);border-radius:6px;aspect-ratio:4/3}.video-meta{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:14px 0 28px;font-size:13px;color:var(--muted)}.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.chapters button{font:14px/1.5 system-ui,sans-serif;text-align:left;padding:13px 16px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--ink);cursor:pointer}.chapters button:hover,.chapters button:focus-visible{background:#e9ecdf}.chapters time{display:block;font-size:11px;letter-spacing:1px;color:var(--accent)}.details{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:24px}.details p{color:var(--muted)}.notice{padding:18px 20px;border:1px solid var(--line);border-radius:4px;font-size:14px;color:var(--muted);margin-top:34px}footer{font-size:13px;border-top:1px solid var(--line);margin-top:38px;padding-top:18px;color:var(--muted)}@media(max-width:680px){main{padding:24px 18px 46px}.intro{margin-top:30px}.chapters{grid-template-columns:1fr 1fr}.details{grid-template-columns:1fr;gap:0}.brand{font-size:30px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header><a class="brand" href="https://github.com/robbertvanempel/gloss-reader"><span>❧</span> gloss.</a><a href="https://github.com/robbertvanempel/gloss-reader">View the project on GitHub ↗</a></header>
+    <section class="intro"><p class="eyebrow">English walkthrough · 2 minutes</p><h1>Read. Ask.<br>Keep the thought.</h1><p>See how to open text, explore a passage in the margin, save notes, and make the reading space your own. Recorded in the actual app with English narration and captions.</p></section>
+    <video id="walkthrough" controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Gloss Reader English walkthrough">
+      <source src="gloss-reader-walkthrough.mp4" type="video/mp4">
+      <track kind="captions" src="gloss-reader-walkthrough.vtt" srclang="en" label="English">
+      Your browser does not support this video. <a href="gloss-reader-walkthrough.mp4">Download the MP4</a> or read the transcript linked below.
+    </video>
+    <div class="video-meta"><span>English audio · visible captions · 12 chapters</span><a href="gloss-reader-walkthrough.mp4" download>Download the video ↓</a><a href="https://github.com/robbertvanempel/gloss-reader/blob/main/docs/walkthrough.md">Read the transcript ↗</a></div>
+    <section aria-labelledby="chapter-heading"><h2 id="chapter-heading">Jump to a step</h2><div class="chapters">
+      <button data-time="0"><time>00:00</time>Start in English</button>
+      <button data-time="9.78"><time>00:09</time>Open your own text</button>
+      <button data-time="20.15"><time>00:20</time>Read without distractions</button>
+      <button data-time="28.647"><time>00:28</time>See the main idea</button>
+      <button data-time="37.284"><time>00:37</time>Select a passage</button>
+      <button data-time="48.32"><time>00:48</time>Explore the explanation</button>
+      <button data-time="58.888"><time>00:58</time>Keep your own thought</button>
+      <button data-time="67.496"><time>01:07</time>Revisit and export</button>
+      <button data-time="78.354"><time>01:18</time>Make the page your own</button>
+      <button data-time="88.648"><time>01:28</time>Stay with the text</button>
+      <button data-time="97.835"><time>01:37</time>Connect a model</button>
+      <button data-time="110.129"><time>01:50</time>Read. Ask. Keep the thought.</button>
+    </div></section>
+    <section class="details"><div><h2>Try it yourself</h2><p>Download the project, start the local Python server, and choose <strong>EN</strong> in the top bar. No build step is needed.</p><a href="https://github.com/robbertvanempel/gloss-reader#start-the-app">Start the app ↗</a></div><div><h2>Learn how it works</h2><p>The English guide covers the reading controls, notebook, exports, OpenAI and Ollama setup, local storage, and common questions.</p><a href="https://github.com/robbertvanempel/gloss-reader/blob/main/docs/user-guide.md">Read the step-by-step guide ↗</a></div></section>
+    <p class="notice">This demonstration uses only generic sample content and a synthetic English voice. The sample explanation is prewritten and labelled in the app. Your own questions require a model connection. No personal articles, notes, account details, or credentials appear in the recording.</p>
+    <footer>Gloss Reader is a local reading app with English and Dutch interfaces. This page hosts its English documentation video; the reading app runs on your own computer.</footer>
+  </main>
+  <script>
+    const video=document.getElementById('walkthrough');
+    document.querySelectorAll('[data-time]').forEach(button=>button.addEventListener('click',()=>{
+      const jump=()=>{video.currentTime=Number(button.dataset.time);video.play().catch(()=>{});};
+      if(video.readyState>=1)jump();
+      else video.addEventListener('loadedmetadata',jump,{once:true});
+      video.scrollIntoView({behavior:'smooth',block:'center'});
+    }));
+  </script>
+</body>
+</html>
